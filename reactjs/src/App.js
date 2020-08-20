@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from './components/Header';
 
 function App() {
+  const [projects, setProjects] = useState([]);
+
+  function handleAddProject() {
+    setProjects([...projects, `Novo Projeto ${Date.now()}`]);
+  }
+
   return (
     <>
       <Header title="Homepage">
@@ -12,7 +18,15 @@ function App() {
         </ul>
       </Header>
       <Header title="Projects">
-        <p>Aqui não tem ítens de lista</p>
+        <ul>
+          {projects.map((project) => (
+            <li key={project}>{project}</li>
+          ))}
+        </ul>
+
+        <button type="button" onClick={handleAddProject}>
+          Add Project
+        </button>
       </Header>
     </>
   );
